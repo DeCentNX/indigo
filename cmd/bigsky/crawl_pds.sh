@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 set -e              # fail on error
 set -u              # fail if variable not set in substitution
 set -o pipefail     # fail if part of a '|' command fails
@@ -19,6 +17,7 @@ if test -z "$1"; then
     exit -1
 fi
 
+# NOTE01 -> Relay 启动爬取时 需要调用这个接口
 echo "requestCrawl $1"
 http --quiet --ignore-stdin post https://${RELAY_HOST}/admin/pds/requestCrawl Authorization:"Bearer ${RELAY_ADMIN_KEY}" \
 	hostname=$1
