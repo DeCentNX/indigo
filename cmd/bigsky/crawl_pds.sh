@@ -19,6 +19,7 @@ fi
 
 # NOTE01 -> Relay 启动爬取时 需要调用这个接口
 # idea01 -> RELAY_HOST 可以用 localhost 代替吗？（https -> http）
+# 验证 -> 可以
 echo "requestCrawl $1"
 http --quiet --ignore-stdin post http://${RELAY_HOST}/admin/pds/requestCrawl Authorization:"Bearer ${RELAY_ADMIN_KEY}" \
 	hostname=$1
