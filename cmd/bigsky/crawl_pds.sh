@@ -18,13 +18,13 @@ if test -z "$1"; then
 fi
 
 # NOTE01 -> Relay 启动爬取时 需要调用这个接口
-# idea01 -> RELAY_HOST 可以用 localhost 代替吗？
+# idea01 -> RELAY_HOST 可以用 localhost 代替吗？（https -> http）
 echo "requestCrawl $1"
-http --quiet --ignore-stdin post https://${RELAY_HOST}/admin/pds/requestCrawl Authorization:"Bearer ${RELAY_ADMIN_KEY}" \
+http --quiet --ignore-stdin post http://${RELAY_HOST}/admin/pds/requestCrawl Authorization:"Bearer ${RELAY_ADMIN_KEY}" \
 	hostname=$1
 
 echo "changeLimits $1"
-http --quiet --ignore-stdin post https://${RELAY_HOST}/admin/pds/changeLimits Authorization:"Bearer ${RELAY_ADMIN_KEY}" \
+http --quiet --ignore-stdin post http://${RELAY_HOST}/admin/pds/changeLimits Authorization:"Bearer ${RELAY_ADMIN_KEY}" \
 	per_second:=100 \
 	per_hour:=1000000 \
 	per_day:=1000000 \
